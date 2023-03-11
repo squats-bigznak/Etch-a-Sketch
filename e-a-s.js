@@ -7,19 +7,16 @@
 const container = document.querySelector('#container');
 
 function createGrid(dimensions){
+    const stretch = parseInt(960/dimensions)
     for (let i = 0; i < dimensions; i++){
         const ps = document.createElement('div');
         ps.classList.add('ps');
-        ps.style.color = 'red';                                      
-        ps.textContent = 'box';
-        ps.style.cssText = 'color: red;';
         container.appendChild(ps);
         for (let j = 0; j < dimensions; j++){
             const pp = document.createElement('div');
             pp.classList.add('pp');
-            pp.style.color = 'red';                                      
-            pp.textContent = 'box';
-            pp.style.cssText = 'color: red;';
+            pp.style.width = stretch+'px';
+            pp.style.height = stretch+'px';           
             ps.appendChild(pp);
             
         }
@@ -27,4 +24,4 @@ function createGrid(dimensions){
 
 }   
 
-createGrid(10);
+createGrid(100);

@@ -1,27 +1,36 @@
 
+const gridContainer = document.querySelector('.gridContainer');
 
-//call container
-//create div of n columns in it
-//create div of n rows in each column
+let dimensions = 50;
+let ps = [];
+const stretch = parseInt(960/dimensions);
+gridContainer.style.gridTemplateColumns = (`repeat(${dimensions}, 1fr`);
+gridContainer.style.gridTemplateRows = (`repeat(${dimensions}, 1fr`);
+var colors = ['#000', '#111', '#222', '#333', '#444', '#555',
+                '#666', '#777', '#888'];
+let picker = 0
 
-const container = document.querySelector('#container');
+for (let i = 0; i < (dimensions*dimensions); i++){
 
-function createGrid(dimensions){
-    const stretch = parseInt(960/dimensions)
-    for (let i = 0; i < dimensions; i++){
-        const ps = document.createElement('div');
-        ps.classList.add('ps');
-        container.appendChild(ps);
-        for (let j = 0; j < dimensions; j++){
-            const pp = document.createElement('div');
-            pp.classList.add('pp');
-            pp.style.width = stretch+'px';
-            pp.style.height = stretch+'px';           
-            ps.appendChild(pp);
+        ps[i] = document.createElement('div');
+        ps[i].classList.add('ps');
+        ps[i].style.width = stretch+'px';
+        ps[i].style.height = stretch+'px'; 
+        ps[i].addEventListener('mouseover', function(event){
             
-        }
+            
+            
+            event.target.style.backgroundColor = colors[picker%9];
+            ++picker;
+        })
+        
+        gridContainer.appendChild(ps[i]);
+        
     }
 
-}   
 
-createGrid(100);
+// createGrid(10);
+    
+
+
+
